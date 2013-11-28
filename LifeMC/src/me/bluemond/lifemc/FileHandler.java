@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+//File Class
 public class FileHandler{
 	File dirLifeMC = new File("plugins" + File.separator + "LifeMC");
 	File dirData = new File("plugins" + File.separator + "LifeMC" + File.separator + "Data");

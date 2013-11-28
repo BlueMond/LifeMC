@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+//Properties class
 public class PropertiesHandler {
 	Properties props = new Properties();
     File config = new File("plugins" + File.separator + "LifeMC" + File.separator + "config.properties");

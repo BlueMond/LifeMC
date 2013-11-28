@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+//Main plugin class
 public class LifeMC extends JavaPlugin{
 	
 	private final pListener listener = new pListener(this);

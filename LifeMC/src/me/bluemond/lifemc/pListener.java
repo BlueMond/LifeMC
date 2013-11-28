@@ -12,6 +12,7 @@ import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
+//Listener class
 public class pListener implements Listener{
 	Plugin LifeMC;
 	PropertiesHandler PH = new PropertiesHandler();

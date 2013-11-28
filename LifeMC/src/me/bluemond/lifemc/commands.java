@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 
 import com.iCo6.system.Holdings;
 
+//Command class
 public class commands implements CommandExecutor{
 	PropertiesHandler PH = new PropertiesHandler();
 	FileHandler FH = new FileHandler();
