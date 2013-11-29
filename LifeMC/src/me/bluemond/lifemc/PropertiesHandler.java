@@ -70,9 +70,9 @@ public class PropertiesHandler {
 		double lifeCost = 100.0;
 		try{
 	        props.load(new FileInputStream(config));
-	        lifeCost = Integer.parseInt(props.getProperty("LifeCost"));
+	        lifeCost = Double.parseDouble(props.getProperty("LifeCost"));
 	    }catch (Exception e){
-	        log.severe("Defaulting LifeCost to 3. Error while loading config file:" + e);
+	        log.severe("Defaulting LifeCost to 100.0. Error while loading config file:" + e);
 	    }
     	return lifeCost;
     }

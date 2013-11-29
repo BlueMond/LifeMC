@@ -11,31 +11,24 @@ public class LifeMC extends JavaPlugin{
 	Logger log = Logger.getLogger("Minecraft");
 	PropertiesHandler PH = new PropertiesHandler();
 	FileHandler FH = new FileHandler();
-  	Boolean iConomy = false;
+  	Boolean check;
 
   public void onDisable(){
-	  log.info("LifeMC(By: BlueMond) was enabled!"); //find code for including yaml version number
+	  log.info("LifeMC (By: BlueMond) was disabled!"); //find code for including yaml version number
   }
 
   public void onEnable(){
-	  log.info("LifeMC(By: BlueMond) was disabled!"); //find code for including yaml version number
+	  log.info("LifeMC (By: BlueMond) was enabled!"); //find code for including yaml version number
 	  
 	  getCommand("lives").setExecutor(new commands());
-	  getCommand("revive").setExecutor(new commands());
 	  
 	  PluginManager pm = getServer().getPluginManager();
 	  pm.registerEvents(listener, this);
 	  
-	  if(pm.getPlugin("iConomy") == null){
-		  log.severe("iConomy was not found! iConomy enabled!");
-		  iConomy = false;
+	  if(pm.getPlugin("iConomy") != null){
+		  log.info("iConomy was found! iConomy enabled!");
 	  }else{
-		  log.info("iConomy was found! iConomy disabled!");
-		  iConomy = true;
+		  log.severe("iConomy was not found! iConomy disabled!");
 	  }
-  }
-  
-  public boolean isRunningiConomy(){
-	  return iConomy;
   }
 }

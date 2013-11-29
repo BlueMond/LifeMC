@@ -63,11 +63,19 @@ public class commands implements CommandExecutor{
             	try{
             		int lives = Integer.parseInt(args[2]);
             		FH.setLives(playerName, lives);
-            		sender.sendMessage("[LifeMC] " + ChatColor.YELLOW + playerName + ChatColor.WHITE + "now has " + ChatColor.GREEN + lives + ChatColor.WHITE + " lives." );
+            		sender.sendMessage("[LifeMC] " + ChatColor.YELLOW + playerName + ChatColor.WHITE + " now has " + ChatColor.GREEN + lives + ChatColor.WHITE + " lives." );
             		Player player = server.getPlayer(playerName);
             		if(player != null){
-            			sender.sendMessage("[LifeMC] " + ChatColor.YELLOW + sender.getName() + ChatColor.WHITE + " has set your lives to " + ChatColor.GREEN + lives);
-            		}
+            			if (lives < 1){
+        					player.getInventory().clear();
+        			        player.getEquipment().clear();
+        			        player.setExp(0);
+        			        player.kickPlayer("[LifeMC] You have ran out of lives!");
+        			        server.broadcastMessage("[LifeMC] " + ChatColor.DARK_RED + player.getName() + ChatColor.RED + " has ran out of lives!");
+        				}else{
+        					player.sendMessage("[LifeMC] " + ChatColor.YELLOW + sender.getName() + ChatColor.WHITE + " has set your lives to " + ChatColor.GREEN + lives);
+        				}
+        			}
             	}catch(NumberFormatException e){
             		sender.sendMessage("[LifeMC] " + ChatColor.RED + "Argument must be an integer!");
             	}
@@ -88,11 +96,19 @@ public class commands implements CommandExecutor{
             		int amount = Integer.parseInt(args[2]);
             		int lives = FH.getLives(playerName) + amount;
             		FH.setLives(playerName, lives);
-            		sender.sendMessage("[LifeMC] " + ChatColor.YELLOW + playerName + ChatColor.WHITE + "now has " + ChatColor.GREEN + lives + ChatColor.WHITE + " lives." );
+            		sender.sendMessage("[LifeMC] " + ChatColor.YELLOW + playerName + ChatColor.WHITE + " now has " + ChatColor.GREEN + lives + ChatColor.WHITE + " lives." );
             		Player player = server.getPlayer(playerName);
             		if(player != null){
-            			sender.sendMessage("[LifeMC] " + ChatColor.YELLOW + sender.getName() + ChatColor.WHITE + " has set your lives to " + ChatColor.GREEN + lives);
-            		}
+            			if (lives < 1){
+        					player.getInventory().clear();
+        			        player.getEquipment().clear();
+        			        player.setExp(0);
+        			        player.kickPlayer("[LifeMC] You have ran out of lives!");
+        			        server.broadcastMessage("[LifeMC] " + ChatColor.DARK_RED + player.getName() + ChatColor.RED + " has ran out of lives!");
+        				}else{
+        					player.sendMessage("[LifeMC] " + ChatColor.YELLOW + sender.getName() + ChatColor.WHITE + " has set your lives to " + ChatColor.GREEN + lives);
+        				}
+        			}
             	}catch(NumberFormatException e){
             		sender.sendMessage("[LifeMC] " + ChatColor.RED + "Argument must be an integer!");
             	}
@@ -113,11 +129,19 @@ public class commands implements CommandExecutor{
             		int amount = Integer.parseInt(args[2]);
             		int lives = FH.getLives(playerName) - amount;
             		FH.setLives(playerName, lives);
-            		sender.sendMessage("[LifeMC] " + ChatColor.YELLOW + playerName + ChatColor.WHITE + "now has " + ChatColor.GREEN + lives + ChatColor.WHITE + " lives." );
+            		sender.sendMessage("[LifeMC] " + ChatColor.YELLOW + playerName + ChatColor.WHITE + " now has " + ChatColor.GREEN + lives + ChatColor.WHITE + " lives." );
             		Player player = server.getPlayer(playerName);
             		if(player != null){
-            			sender.sendMessage("[LifeMC] " + ChatColor.YELLOW + sender.getName() + ChatColor.WHITE + " has set your lives to " + ChatColor.GREEN + lives);
-            		}
+            			if (lives < 1){
+        					player.getInventory().clear();
+        			        player.getEquipment().clear();
+        			        player.setExp(0);
+        			        player.kickPlayer("[LifeMC] You have ran out of lives!");
+        			        server.broadcastMessage("[LifeMC] " + ChatColor.DARK_RED + player.getName() + ChatColor.RED + " has ran out of lives!");
+        				}else{
+        					player.sendMessage("[LifeMC] " + ChatColor.YELLOW + sender.getName() + ChatColor.WHITE + " has set your lives to " + ChatColor.GREEN + lives);
+        				}
+        			}
             	}catch(NumberFormatException e){
             		sender.sendMessage("[LifeMC] " + ChatColor.RED + "Argument must be an integer!");
             	}
@@ -157,7 +181,7 @@ public class commands implements CommandExecutor{
 	}
 	
 	public void runBuy(CommandSender sender, String[] args){
-		if (lifemc.isRunningiConomy()){
+		if (sender.getServer().getPluginManager().getPlugin("iConomy") != null){
 			if (PH.isBuyingEnabled()){
 				if (sender instanceof Player){
 					if (sender.hasPermission("lifemc.livesbuying")){
@@ -169,14 +193,19 @@ public class commands implements CommandExecutor{
 							int amount = Integer.parseInt(args[1]);
 							double cost = PH.getLifeCost();
 							double totalCost = amount * cost;
-							if (holdings.hasEnough(totalCost)){
-								holdings.subtract(totalCost);
-								int lives = FH.getLives(playerName);
-								lives += amount;
-								FH.setLives(playerName, lives);
-								sender.sendMessage("[LifeMC] " + ChatColor.DARK_GREEN + ""); //refine this message
+							int lives = FH.getLives(playerName);
+							lives += amount;
+							int maxLives = PH.getMaxLives();
+							if(!(lives > maxLives)){
+								if (holdings.hasEnough(totalCost)){
+									holdings.subtract(totalCost);
+									FH.setLives(playerName, lives);
+									sender.sendMessage("[LifeMC] You bought " + ChatColor.GREEN + amount + ChatColor.WHITE + " lives for " + ChatColor.DARK_GREEN + "$" + totalCost); //refine this message
+								}else{
+									sender.sendMessage("[LifeMC] " + ChatColor.RED + "You don't have " + ChatColor.DARK_GREEN + "$" + totalCost + ChatColor.RED + "!");
+								}
 							}else{
-								sender.sendMessage("[LifeMC] " + ChatColor.RED + "You don't have " + ChatColor.DARK_GREEN + "$" + totalCost + ChatColor.RED + "!"); //refine this message
+								sender.sendMessage("[LifeMC] " + ChatColor.RED + "This would exceed the max lives allowed.");
 							}
 						}catch(NumberFormatException e){
 							sender.sendMessage("[LifeMC] " + ChatColor.RED + "Argument must be an integer!");

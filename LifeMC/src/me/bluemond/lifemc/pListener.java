@@ -61,7 +61,7 @@ public class pListener implements Listener{
 			        player.getEquipment().clear();
 			        player.setExp(0);
 			        player.kickPlayer("[LifeMC] You have ran out of lives!");
-			        server.broadcastMessage("[LifeMC]" + ChatColor.DARK_RED + player.getName() + ChatColor.RED + " has ran out of lives!");
+			        server.broadcastMessage("[LifeMC] " + ChatColor.DARK_RED + player.getName() + ChatColor.RED + " has ran out of lives!");
 				}else{
 					player.sendMessage("[LifeMC] " + ChatColor.RED + "You have lost 1 life!");
 				}
