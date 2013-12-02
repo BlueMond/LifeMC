@@ -4,22 +4,23 @@ main: me.bluemond.lifemc.LifeMC
 commands:
   lives:
     description: Returns the amount of lives you have.
-    usage: /lives OR /lives <playername> OR /lives <set/add/remove> <playerName> <amount> OR /lives buy <(amount)/cost>
-  revive:
-    description: Uses one life to unban and give a life to the specified player.
-    usage: /revive <playername>
-permissions:
+    usage: /lives OR /lives <playerName> OR /lives <set/add/remove> <playerName> <amount> OR /lives buy <amount> OR /lives cost
+  permissions:
   lifemc.*:
     description: Access to all LifeMC permission nodes.
     default: false
     children:
+      lifemc.givelives: true
       lifemc.eatdiamonds: true
       lifemc.seeownlives: true
+      lifemc.revive: true
       lifemc.seeotherslives: true
       lifemc.livesediting: true
       lifemc.livesbuying: true
-      lifemc.revive: true
       lifemc.ondeathloselife: true
+  lifemc.givelives:
+    description: Can give lives to other players.
+    default: true
   lifemc.eatdiamonds:
     description: Can eat diamonds to gain lives.
     default: true
@@ -36,7 +37,7 @@ permissions:
     description: Can use /lives buy <amount> to buy lives with iConomy
     default: true
   lifemc.revive:
-    description: Can use /revive to revive other players.
+    description: Can revive other players by giving lives.
     default: true
   lifemc.ondeathloselife:
     description: Can lose a life on death.
