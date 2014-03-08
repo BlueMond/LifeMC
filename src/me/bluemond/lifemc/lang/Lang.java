@@ -50,7 +50,7 @@ public enum Lang {
 	/**
 	 * You ran out of lives. A friend can revive you to get you back online.
 	 */
-	KICK_OUT_OF_LIVES("kick-out-of-lives", "&4You ran out of lives. A friend can revive you to get you back online."),
+	KICK_OUT_OF_LIVES("kick-out-of-lives", "&4You ran out of lives. Ask a friend to give you a life to get you back online."),
 	/**
 	 * You lost 1 life!
 	 */

@@ -5,14 +5,8 @@
 # The max amount of lives a player can have.
 Max lives: 10
 
-# The minimum amount of lives a player has to have before he/she can revive someone else.
-Lives to revive: 1
-
 # Starting lives of a new player
 Starting lives: 3
-
-# Allow players to revive other players
-Revive enabled: true
 
 # Allow players to buy lives
 Buying enabled: false
