@@ -29,7 +29,7 @@ public class InteractListener implements Listener {
 		if (!event.hasItem()) return;
 		
 		Player player = event.getPlayer();
-		ItemStack item = event.getItem();
+		ItemStack item = player.getItemInHand();
 		
 		if (!player.hasPermission("lifemc.lives.gain")) return;
 		
@@ -47,7 +47,7 @@ public class InteractListener implements Listener {
 		
 		if (item.getAmount() <= 1) {
 			// Remove item
-			item.setType(Material.AIR);
+			player.setItemInHand(null);
 		} else {
 			item.setAmount(item.getAmount() - 1);
 		}
@@ -56,5 +56,7 @@ public class InteractListener implements Listener {
 		plugin.getDataHandler().setLives(player, lives + 1);
 		
 		player.sendMessage(Lang.GAINED_A_LIFE.getConfigValue());
+		
+		event.setCancelled(true);
 	}
 }
