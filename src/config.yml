@@ -1,0 +1,31 @@
+# Config file of LifeMC.
+# After you update to a new version, the config won't update automatically. If you are missing an option, you can find it on the github page.
+# Github page: https://github.com/BlueMond/LifeMC
+
+# The max amount of lives a player can have.
+Max lives: 10
+
+# The minimum amount of lives a player has to have before he/she can revive someone else.
+Lives to revive: 1
+
+# Starting lives of a new player
+Starting lives: 3
+
+# Allow players to revive other players
+Revive enabled: true
+
+# Allow players to buy lives
+Buying enabled: false
+
+# Allow players to eat items to gain a life
+Eating enabled: true
+
+# Items that can be 'eaten'. A player has to right click with the item in hand to eat it.
+# A list of items can be found here: http://jd.bukkit.org/rb/apidocs/org/bukkit/Material.html
+Eatable items:
+- GOLDEN_APPLE
+- GOLDEN_CARROT
+
+# Cost to buy one life
+# This is in your own currency.
+Life cost: 100
