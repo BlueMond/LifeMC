@@ -31,6 +31,9 @@ public class InteractListener implements Listener {
 		Player player = event.getPlayer();
 		ItemStack item = player.getItemInHand();
 		
+		// Players can eat food when they are sneaking.
+		if (player.isSneaking()) return;
+		
 		if (!player.hasPermission("lifemc.lives.gain")) return;
 		
 		List<Material> eatableItems = plugin.getConfigHandler().getEatableItems();
