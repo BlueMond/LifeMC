@@ -86,4 +86,8 @@ public class ConfigHandler {
 	public int getStartingLives() {
 		return mainConfig.getInt("Starting lives", 3);
 	}
+	
+	public boolean spawnAtBedAfterBan() {
+		return mainConfig.getBoolean("Spawn at bad after ban", false);
+	}
 }
