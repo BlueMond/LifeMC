@@ -102,7 +102,11 @@ public enum Lang {
 	/**
 	 * {0} has {1} lives.
 	 */
-	CHECK_LIVES_OTHER("check-lives-other", "&2{0} has &e{1}&2 lives."),;
+	CHECK_LIVES_OTHER("check-lives-other", "&2{0} has &e{1}&2 lives."),
+	/**
+	 * You cannot give yourself lives.
+	 */
+	CANNOT_GIVE_SELF("cannot-give-self", "&4You cannot give yourself lives."),;
 
 	private String path, def;
 	private static FileConfiguration LANG;
