@@ -106,6 +106,11 @@ public class Commands implements CommandExecutor {
 				return true;
 			}
 			
+			if (target.equalsIgnoreCase(sender.getName())) {
+				sender.sendMessage(Lang.CANNOT_GIVE_SELF.getConfigValue());
+				return true;
+			}
+			
 			target = plugin.getDataHandler().getPlayerName(plugin.getDataHandler().getUUIDString(target));
 
 			int currentLives = plugin.getDataHandler().getLives(target);
