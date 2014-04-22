@@ -3,6 +3,7 @@ package me.bluemond.lifemc.listeners;
 import me.bluemond.lifemc.LifeMC;
 import me.bluemond.lifemc.lang.Lang;
 
+import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -37,6 +38,15 @@ public class EntityDeathListener implements Listener {
 			//player.getInventory().clear();
 			//player.getEquipment().clear();
 			//player.setExp(0);
+			
+			// Teleport player to bed so they spawn at their bed after they get unbanned.
+			if (plugin.getConfigHandler().spawnAtBedAfterBan()) {
+				Location bedLocation = player.getBedSpawnLocation();
+
+				if (bedLocation != null) {
+					player.teleport(bedLocation);
+				}
+			}
 			
 			player.kickPlayer(Lang.KICK_OUT_OF_LIVES.getConfigValue());
 		} else {
