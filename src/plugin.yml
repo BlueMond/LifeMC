@@ -1,5 +1,5 @@
 name: LifeMC
-version: 2.0
+version: 2.1
 main: me.bluemond.lifemc.LifeMC
 softdepend: [Vault]
 authors: [Staartvin, Bluemond]
