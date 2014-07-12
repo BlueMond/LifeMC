@@ -11,6 +11,7 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -25,8 +26,8 @@ public class FileUtil {
 
 	private static JavaPlugin plugin;
 
-	public FileUtil(JavaPlugin instance) {
-		plugin = instance;
+	static {
+		plugin = (JavaPlugin) Bukkit.getServer().getPluginManager().getPlugin("LifeMC");
 	}
 
 	public static void copy(InputStream input, File target) throws IOException {

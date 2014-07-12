@@ -4,7 +4,6 @@ import me.bluemond.lifemc.commands.Commands;
 import me.bluemond.lifemc.config.ConfigHandler;
 import me.bluemond.lifemc.config.ConfigWrapper;
 import me.bluemond.lifemc.datahandler.DataHandler;
-import me.bluemond.lifemc.fileutil.FileUtil;
 import me.bluemond.lifemc.listeners.EntityDeathListener;
 import me.bluemond.lifemc.listeners.InteractListener;
 import me.bluemond.lifemc.listeners.LoginListener;
@@ -33,8 +32,6 @@ public class LifeMC extends JavaPlugin {
 	}
 
 	public void onEnable() {
-		
-		new FileUtil(this);
 
 		// Load config from jar.
 		configHandler.loadMainConfig();
