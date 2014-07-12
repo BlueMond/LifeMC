@@ -10,11 +10,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 //Listener class
-public class EntityDeathListener implements Listener {
+public class PlayerRespawnListener implements Listener {
 
 	private LifeMC plugin;
 
-	public EntityDeathListener(LifeMC instance) {
+	public PlayerRespawnListener(LifeMC instance) {
 		plugin = instance;
 	}
 
@@ -40,9 +40,6 @@ public class EntityDeathListener implements Listener {
 				final Location bedLocation = player.getBedSpawnLocation();
 
 				if (bedLocation != null) {
-					System.out.print("Teleport to bed!");
-					System.out.print("Location to bed: " + bedLocation);
-
 					event.setRespawnLocation(bedLocation);
 					
 					// Teleport player after .25 seconds

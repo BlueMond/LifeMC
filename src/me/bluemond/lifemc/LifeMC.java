@@ -4,7 +4,7 @@ import me.bluemond.lifemc.commands.Commands;
 import me.bluemond.lifemc.config.ConfigHandler;
 import me.bluemond.lifemc.config.ConfigWrapper;
 import me.bluemond.lifemc.datahandler.DataHandler;
-import me.bluemond.lifemc.listeners.EntityDeathListener;
+import me.bluemond.lifemc.listeners.PlayerRespawnListener;
 import me.bluemond.lifemc.listeners.InteractListener;
 import me.bluemond.lifemc.listeners.LoginListener;
 import me.bluemond.lifemc.vault.VaultHandler;
@@ -67,7 +67,7 @@ public class LifeMC extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(
 				new InteractListener(this), this);
 		getServer().getPluginManager().registerEvents(
-				new EntityDeathListener(this), this);
+				new PlayerRespawnListener(this), this);
 		getServer().getPluginManager().registerEvents(new LoginListener(this),
 				this);
 	}
