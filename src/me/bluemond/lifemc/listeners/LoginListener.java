@@ -33,6 +33,8 @@ public class LoginListener implements Listener {
 			if (lives < 1) {
 				PlayerLoginEvent.Result result = PlayerLoginEvent.Result.KICK_BANNED;
 				event.disallow(result, Lang.KICK_OUT_OF_LIVES.getConfigValue());
+				
+				event.setResult(result);
 			}
 		}
 	}
