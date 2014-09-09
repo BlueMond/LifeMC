@@ -90,4 +90,8 @@ public class ConfigHandler {
 	public boolean spawnAtBedAfterBan() {
 		return mainConfig.getBoolean("Spawn at bad after ban", false);
 	}
+	
+	public boolean gainLifeAtMurder() {
+		return mainConfig.getBoolean("Gain life at murder", false);
+	}
 }

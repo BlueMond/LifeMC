@@ -1,12 +1,13 @@
 package me.bluemond.lifemc;
 
+import me.bluemond.lifemc.api.API;
 import me.bluemond.lifemc.commands.Commands;
 import me.bluemond.lifemc.config.ConfigHandler;
 import me.bluemond.lifemc.config.ConfigWrapper;
 import me.bluemond.lifemc.datahandler.DataHandler;
-import me.bluemond.lifemc.listeners.PlayerRespawnListener;
 import me.bluemond.lifemc.listeners.InteractListener;
 import me.bluemond.lifemc.listeners.LoginListener;
+import me.bluemond.lifemc.listeners.PlayerRespawnListener;
 import me.bluemond.lifemc.vault.VaultHandler;
 
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,6 +18,8 @@ public class LifeMC extends JavaPlugin {
 	private ConfigHandler configHandler = new ConfigHandler(this);
 	private VaultHandler vaultHandler = new VaultHandler(this);
 	private DataHandler dataHandler;
+	
+	private API api = new API(this);
 
 	private ConfigWrapper dataConfig = new ConfigWrapper(this, "", "data.yml");
 	private ConfigWrapper langConfig = new ConfigWrapper(this, "",
@@ -90,5 +93,9 @@ public class LifeMC extends JavaPlugin {
 	
 	public VaultHandler getVaultHandler() {
 		return vaultHandler;
+	}
+	
+	public API getAPI() {
+		return api;
 	}
 }
