@@ -1,8 +1,9 @@
 name: LifeMC
-version: 2.1
+version: 2.2
 main: me.bluemond.lifemc.LifeMC
 softdepend: [Vault]
 authors: [Staartvin, Bluemond]
+api-version: 1.14
 commands:
   lifemc:
     description: Main command of LifeMC.
@@ -33,12 +34,9 @@ permissions:
   lifemc.lives.buy:
     description: Can use /lives buy <amount> to buy lives with iConomy
     default: true
-  lifemc.revive:
-    description: Can revive other players by giving lives.
-    default: true
   lifemc.lives.lose:
     description: Can lose a life on death.
     default: true
   lifemc.murder:
     description: Can gain life on murder
-    default: false
+    default: op

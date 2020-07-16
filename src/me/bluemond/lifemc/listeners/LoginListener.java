@@ -2,7 +2,6 @@ package me.bluemond.lifemc.listeners;
 
 import me.bluemond.lifemc.LifeMC;
 import me.bluemond.lifemc.lang.Lang;
-
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,32 +10,35 @@ import org.bukkit.event.player.PlayerLoginEvent;
 //Listener class
 public class LoginListener implements Listener {
 
-	private LifeMC plugin;
+    private final LifeMC plugin;
 
-	public LoginListener(LifeMC instance) {
-		plugin = instance;
-	}
+    public LoginListener(LifeMC instance) {
+        plugin = instance;
+    }
 
-	@EventHandler
-	public void onPlayerLogin(PlayerLoginEvent event) {
-		Player player = event.getPlayer();
+    @EventHandler
+    public void onPlayerLogin(PlayerLoginEvent event) {
+        Player player = event.getPlayer();
 
-		if (!plugin.getDataHandler().isStored(player.getName())) {
-			// Store new player
+        // Check if we've already stored this player before.
+        if (!plugin.getDataHandler().isStored(player.getName())) {
+            // Store player with default amount of lives.
+            plugin.getDataHandler().setLives(player.getUniqueId(), plugin.getConfigHandler().getStartingLives());
+        } else {
+            // Check already existing player
+            int lives = plugin.getDataHandler().getLives(player.getUniqueId());
 
-			plugin.getDataHandler().setLives(player, plugin.getConfigHandler().getStartingLives());
-			
-		} else {
-			// Check already existing player
-			int lives = plugin.getDataHandler().getLives(player);
+            // Player does not have enough lives.
+            if (lives < 1) {
+                // Kick player.
+                PlayerLoginEvent.Result result = PlayerLoginEvent.Result.KICK_BANNED;
+                event.disallow(result, Lang.KICK_OUT_OF_LIVES.getConfigValue());
+                event.setResult(result);
+            }
+        }
 
-			if (lives < 1) {
-				PlayerLoginEvent.Result result = PlayerLoginEvent.Result.KICK_BANNED;
-				event.disallow(result, Lang.KICK_OUT_OF_LIVES.getConfigValue());
-				
-				event.setResult(result);
-			}
-		}
-	}
+        // Update name of player
+        plugin.getDataHandler().setPlayerName(player.getUniqueId(), player.getName());
+    }
 
 }

@@ -7,13 +7,12 @@ import org.bukkit.configuration.file.FileConfiguration;
  * Every enumeration value has its path and default value.
  * To get the path, do {@link #getPath()}.
  * To get the default value, do {@link #getDefault()}.
- * 
+ * <p>
  * For the defined value in the lang.yml config, use
- * {@link #getConfigValue(String... args)}.
+ * {@link #getConfigValue(Object... args)}.
  * String objects are expected as input.
- * 
+ *
  * @author Staartvin and gomeow
- * 
  */
 public enum Lang {
 	/**
@@ -96,58 +95,69 @@ public enum Lang {
 	 */
 	CANNOT_GIVE_THAT_MANY_LIVES("cannot-give-that-many-lives", "&4You cannot give that many lives. It would exceed the limit!"),
 	/**
-	 * You have {0} lives.
-	 */
-	CHECK_LIVES_SELF("check-lives-self", "&2You have &e{0}&2 lives."),
-	/**
-	 * {0} has {1} lives.
-	 */
-	CHECK_LIVES_OTHER("check-lives-other", "&2{0} has &e{1}&2 lives."),
-	/**
-	 * You cannot give yourself lives.
-	 */
-	CANNOT_GIVE_SELF("cannot-give-self", "&4You cannot give yourself lives."),;
+     * You have {0} lives.
+     */
+    CHECK_LIVES_SELF("check-lives-self", "&2You have &e{0}&2 lives."),
+    /**
+     * {0} has {1} lives.
+     */
+    CHECK_LIVES_OTHER("check-lives-other", "&2{0} has &e{1}&2 lives."),
+    /**
+     * You cannot give yourself lives.
+     */
+    CANNOT_GIVE_SELF("cannot-give-self", "&4You cannot give yourself lives."),
+    /**
+     * You got a life by killing another player.
+     */
+    GAINED_LIFE_BY_MURDER("&aYou got a life by killing another player."),
+    ;
 
-	private String path, def;
-	private static FileConfiguration LANG;
+    private final String path;
+    private final String def;
+    private static FileConfiguration LANG;
 
-	/**
-	 * Lang enum constructor.
-	 * 
-	 * @param path The string path.
-	 * @param start The default string.
-	 */
-	Lang(final String path, final String start) {
-		this.path = path;
-		this.def = start;
-	}
+    /**
+     * Lang enum constructor.
+     *
+     * @param path  The string path.
+     * @param start The default string.
+     */
+    Lang(final String path, final String start) {
+        this.path = path;
+        this.def = start;
+    }
 
-	/**
-	 * Set the {@code FileConfiguration} to use.
-	 * 
-	 * @param config The config to set.
-	 */
-	public static void setFile(final FileConfiguration config) {
-		LANG = config;
-	}
+    Lang(final String message) {
+        this.path = this.toString().toLowerCase().replace("_", "-");
+        this.def = message;
+    }
 
-	/**
-	 * Get the value in the config with certain arguments
-	 * 
-	 * @param args arguments that need to be given. (Can be null)
-	 * @return value in config or otherwise default value
-	 */
-	public String getConfigValue(String... args) {
-		String value = ChatColor.translateAlternateColorCodes('&', LANG.getString(this.path, this.def));
+    /**
+     * Set the {@code FileConfiguration} to use.
+     *
+     * @param config The config to set.
+     */
+    public static void setFile(final FileConfiguration config) {
+        LANG = config;
+    }
 
-		if (args == null)
-			return value;
-		else {
-			if (args.length == 0)
-				return value;
+    /**
+     * Get the value in the config with certain arguments
+     *
+     * @param args arguments that need to be given. (Can be null)
+     * @return value in config or otherwise default value
+     */
+    public String getConfigValue(Object... args) {
+        String value = ChatColor.translateAlternateColorCodes('&', LANG.getString(this.path, this.def));
 
-			for (int i = 0; i < args.length; i++) {
-				value = value.replace("{" + i + "}", args[i]);
+        if (args == null)
+            return value;
+        else {
+            if (args.length == 0)
+                return value;
+
+            for (int i = 0; i < args.length; i++) {
+                value = value.replace("{" + i + "}", args[i].toString());
 			}
 		}
 
