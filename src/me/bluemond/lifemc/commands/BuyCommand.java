@@ -39,7 +39,11 @@ public class BuyCommand extends PluginCommand {
         }
 
         if (strings.length == 0) {
-            commandSender.sendMessage(ChatColor.RED + "You should provide a number of lives.");
+            //inform the player of the price of a life
+            int cost = plugin.getConfigHandler().getLifeCost();
+            commandSender.sendMessage(Lang.COST_OF_A_LIFE.getConfigValue(cost));
+
+            commandSender.sendMessage(ChatColor.YELLOW + "Use '/lifemc buy <amount>' to purchase lives.");
             return true;
         }
 

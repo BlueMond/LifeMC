@@ -9,7 +9,7 @@ import java.util.List;
 
 public abstract class PluginCommand implements TabExecutor {
 
-    private final LifeMC plugin;
+    protected final LifeMC plugin;
 
     public PluginCommand(LifeMC plugin) {
         this.plugin = plugin;
@@ -21,8 +21,7 @@ public abstract class PluginCommand implements TabExecutor {
 
     @Override
     public abstract List<String> onTabComplete(CommandSender commandSender, org.bukkit.command.Command command,
-                                               String s,
-                                               String[] strings);
+                                               String s, String[] strings);
 
     public boolean hasPermission(CommandSender sender, String permission) {
         if (!sender.hasPermission(permission)) {

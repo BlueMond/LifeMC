@@ -25,6 +25,9 @@ permissions:
   lifemc.lives.set:
     description: Can use /lives set <player> <amount> to edit anyones lives.
     default: op
+    children:
+      lifemc.lives.add: true
+      lifemc.lives.remove: true
   lifemc.lives.add:
     description: Can use /lives add <player> <amount> to edit anyones lives.
     default: op
@@ -40,3 +43,16 @@ permissions:
   lifemc.murder:
     description: Can gain life on murder
     default: op
+  lifemc.*:
+    description: Access to all lifemc commands
+    children:
+      lifemc.lives.give: true
+      lifemc.lives.gain: true
+      lifemc.lives.check: true
+      lifemc.lives.check.other: true
+      lifemc.lives.set: true
+      lifemc.lives.add: true
+      lifemc.lives.remove: true
+      lifemc.lives.buy: true
+      lifemc.lives.lose: true
+      lifemc.lives.murder: true

@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,13 +25,8 @@ public class AddCommand extends PluginCommand {
             return true;
         }
 
-        if (strings.length == 0) {
-            commandSender.sendMessage(ChatColor.RED + "You should provide a player name.");
-            return true;
-        }
-
-        if (strings.length == 1) {
-            commandSender.sendMessage(ChatColor.RED + "You should provide a number of lives.");
+        if (strings.length == 0 || strings.length == 1) {
+            commandSender.sendMessage(ChatColor.RED + "Usage: /lifemc add <player> <amount>");
             return true;
         }
 
@@ -54,6 +50,15 @@ public class AddCommand extends PluginCommand {
 
         commandSender.sendMessage(Lang.CHANGED_LIFE_AMOUNT.getConfigValue(target.getName(),
                 this.getPlugin().getDataHandler().getLives(target.getUniqueId())));
+
+        //kick player if is online and out of lives
+        Player player = target.getPlayer();
+        if (player != null) {
+            if(plugin.getDataHandler().getLives(player.getUniqueId()) <= 0){
+                // kick giver if no lives remain
+                player.kickPlayer(Lang.KICK_OUT_OF_LIVES.getConfigValue());
+            }
+        }
 
         return true;
     }

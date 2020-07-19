@@ -30,13 +30,8 @@ public class GiveCommand extends PluginCommand {
             return true;
         }
 
-        if (strings.length == 0) {
-            commandSender.sendMessage(ChatColor.RED + "You should provide a player name.");
-            return true;
-        }
-
-        if (strings.length == 1) {
-            commandSender.sendMessage(ChatColor.RED + "You should provide a number of lives.");
+        if (strings.length == 0 || strings.length == 1) {
+            commandSender.sendMessage(ChatColor.RED + "Usage: /lifemc give <player> <amount>");
             return true;
         }
 
@@ -81,6 +76,11 @@ public class GiveCommand extends PluginCommand {
         commandSender.sendMessage(ChatColor.GREEN + "You've given " + targetLives + " lives to " + target.getName() +
                 ".");
         commandSender.sendMessage(ChatColor.GOLD + "You have " + getPlugin().getDataHandler().getLives(giver.getUniqueId()) + " lives left.");
+
+        // kick giver if no lives remain
+        if(getPlugin().getDataHandler().getLives(giver.getUniqueId()) <= 0){
+            giver.kickPlayer(Lang.KICK_OUT_OF_LIVES.getConfigValue());
+        }
 
         return true;
     }

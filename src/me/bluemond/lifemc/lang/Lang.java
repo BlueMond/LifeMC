@@ -41,10 +41,6 @@ public enum Lang {
 	/**
 	 * Incorrect usage. Correct usage: {0}
 	 */
-	USAGE_ERROR("usage-error", "&4Incorrect usage. Correct usage: &e{0}"),
-	/**
-	 * Unknown command. Type /lifemc help for a list of commands.
-	 */
 	UNKNOWN_COMMAND("unknown-command", "&4Unknown command. Type &e/lifemc help&4 for a list of commands."),
 	/**
 	 * You ran out of lives. A friend can revive you to get you back online.
@@ -85,7 +81,7 @@ public enum Lang {
 	/**
 	 * You changed {0} lives to {1}.
 	 */
-	CHANGED_LIFE_AMOUNT("changed-life-amount", "&2You changed &e{0}&2 lives to &e{1}&2."),
+	CHANGED_LIFE_AMOUNT("changed-life-amount", "&2You changed &e{0}'s&2 lives to &e{1}&2."),
 	/**
 	 * You do not have enough lives to do that!
 	 */

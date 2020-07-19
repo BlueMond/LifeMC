@@ -92,7 +92,7 @@ public class CommandManager implements TabExecutor {
             sender.sendMessage(ChatColor.GOLD + "/lifemc give <player> <amount>" + ChatColor.BLUE
                     + " --- Transfer lives from you to another player.");
             sender.sendMessage(ChatColor.GOLD + "/lifemc buy <amount>" + ChatColor.BLUE + " --- Buy a certain amount " +
-                    "of lives.");
+                    "of lives or check the cost, if amount isn't included.");
             sender.sendMessage(ChatColor.GRAY + "Page 2 of " + numberOfPages);
         } else {
             sender.sendMessage(ChatColor.BLUE + "----------------["
