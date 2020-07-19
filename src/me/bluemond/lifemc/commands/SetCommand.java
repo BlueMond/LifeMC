@@ -54,7 +54,6 @@ public class SetCommand extends PluginCommand {
         Player player = target.getPlayer();
         if (player != null) {
             if(plugin.getDataHandler().getLives(player.getUniqueId()) <= 0){
-                // kick giver if no lives remain
                 player.kickPlayer(Lang.KICK_OUT_OF_LIVES.getConfigValue());
             }
         }

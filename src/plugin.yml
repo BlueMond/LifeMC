@@ -45,6 +45,7 @@ permissions:
     default: op
   lifemc.*:
     description: Access to all lifemc commands
+    default: op
     children:
       lifemc.lives.give: true
       lifemc.lives.gain: true
