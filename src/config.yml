@@ -29,3 +29,6 @@ Spawn at bad after ban: false
 
 # Does a player gain a life when he kills another player?
 Gain life at murder: false
+
+# Can players revive other players by giving them lives?
+Revive enabled: true

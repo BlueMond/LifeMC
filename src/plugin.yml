@@ -43,6 +43,9 @@ permissions:
   lifemc.murder:
     description: Can gain life on murder
     default: op
+  lifemc.revive:
+    description: Revive player by giving them a life
+    default: true
   lifemc.*:
     description: Access to all lifemc commands
     default: op
@@ -56,4 +59,5 @@ permissions:
       lifemc.lives.remove: true
       lifemc.lives.buy: true
       lifemc.lives.lose: true
-      lifemc.lives.murder: true
+      lifemc.murder: true
+      lifemc.revive: true
