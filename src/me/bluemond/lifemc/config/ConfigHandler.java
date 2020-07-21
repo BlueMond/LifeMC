@@ -61,6 +61,12 @@ public class ConfigHandler {
         languageConfig.saveConfig();
     }
 
+    public boolean isTempBanEnabled() { return mainConfig.getBoolean("TempBan enabled", false); }
+
+    public double getTempBanHours() { return mainConfig.getDouble("TempBan hours", 10); }
+
+    public int getTempBanLives() { return mainConfig.getInt("TempBan lives", 2); }
+
     public boolean isBuyingEnabled() {
         return mainConfig.getBoolean("Buying enabled", false);
     }

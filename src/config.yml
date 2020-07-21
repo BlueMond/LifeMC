@@ -1,5 +1,6 @@
 # Config file of LifeMC.
-# After you update to a new version, the config won't update automatically. If you are missing an option, you can find it on the github page.
+# After you update to a new version, the config won't update automatically.
+# If you are missing an option, you can find it on the github page, or stop the server and delete the config for it to be regenerated on startup.
 # Github page: https://github.com/BlueMond/LifeMC
 
 # The max amount of lives a player can have.
@@ -32,3 +33,12 @@ Gain life at murder: false
 
 # Can players revive other players by giving them lives?
 Revive enabled: true
+
+# Temporarily bans the player instead of them being permanently dead
+TempBan enabled: false
+
+# Amount of HOURS the player will be temporarily banned (accepts decimals)
+TempBan hours: 10.0
+
+# Lives reinstated to players who rejoin after the tempban
+TempBan lives: 2

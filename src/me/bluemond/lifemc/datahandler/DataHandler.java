@@ -50,6 +50,23 @@ public class DataHandler {
     public void setLives(UUID uuid, int lives) {
         dataFile.set(accountHolder + "." + uuid.toString() + ".lives", lives);
         dataConfig.saveConfig();
+
+        //set tempban time, if tempban enabled, and lives set to 0 or less
+        if(plugin.getConfigHandler().isTempBanEnabled()){
+            if(lives <= 0){
+                plugin.getDataHandler().setTempBanTime(uuid, System.currentTimeMillis());
+            }
+        }
+    }
+
+    public long getTempBanTime(UUID uuid) {
+        return dataFile.getLong(accountHolder + "." + uuid.toString() + ".tempBanTime",
+                0);
+    }
+
+    public void setTempBanTime(UUID uuid, long tempBanTime) {
+        dataFile.set(accountHolder + "." + uuid.toString() + ".tempBanTime", tempBanTime);
+        dataConfig.saveConfig();
     }
 
     public void increaseLives(UUID uuid, int valueToIncrease) {

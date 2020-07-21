@@ -11,6 +11,9 @@ import me.bluemond.lifemc.listeners.PlayerRespawnListener;
 import me.bluemond.lifemc.vault.VaultHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.HashMap;
+import java.util.UUID;
+
 //Main plugin class
 public class LifeMC extends JavaPlugin {
 
@@ -18,6 +21,7 @@ public class LifeMC extends JavaPlugin {
     private VaultHandler vaultHandler;
     private DataHandler dataHandler;
     private CommandManager commandManager;
+    public HashMap<UUID, String> messageBuffer;
 
     private final API api = new API(this);
 
@@ -26,6 +30,8 @@ public class LifeMC extends JavaPlugin {
     }
 
     public void onEnable() {
+        messageBuffer = new HashMap<UUID, String>();
+
         configHandler = new ConfigHandler(this);
         vaultHandler = new VaultHandler(this);
 

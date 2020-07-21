@@ -102,6 +102,10 @@ public class GiveCommand extends PluginCommand {
 
         // kick giver if no lives remain
         if(giverLifeCount <= 0){
+            //set time of tempban, if enabled
+            if(plugin.getConfigHandler().isTempBanEnabled()){
+                plugin.getDataHandler().setTempBanTime(giver.getUniqueId(), System.currentTimeMillis());
+            }
             giver.kickPlayer(Lang.KICK_OUT_OF_LIVES.getConfigValue());
         }
 

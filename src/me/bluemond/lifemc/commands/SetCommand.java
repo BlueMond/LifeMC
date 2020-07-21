@@ -52,8 +52,13 @@ public class SetCommand extends PluginCommand {
 
         //kick player if is online and out of lives
         Player player = target.getPlayer();
-        if (player != null) {
-            if(plugin.getDataHandler().getLives(player.getUniqueId()) <= 0){
+        if (plugin.getDataHandler().getLives(target.getUniqueId()) <= 0) {
+            if(player != null){
+                //set time of tempban, if enabled
+                if(plugin.getConfigHandler().isTempBanEnabled()){
+                    plugin.getDataHandler().setTempBanTime(player.getUniqueId(), System.currentTimeMillis());
+                }
+
                 player.kickPlayer(Lang.KICK_OUT_OF_LIVES.getConfigValue());
             }
         }
