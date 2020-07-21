@@ -1,9 +1,9 @@
 name: LifeMC
-version: 2.2
+version: 2.3
 main: me.bluemond.lifemc.LifeMC
 softdepend: [Vault]
 authors: [Staartvin, Bluemond]
-api-version: 1.14
+api-version: 1.15
 commands:
   lifemc:
     description: Main command of LifeMC.
