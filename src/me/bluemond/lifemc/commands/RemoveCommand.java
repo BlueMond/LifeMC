@@ -55,11 +55,6 @@ public class RemoveCommand extends PluginCommand {
         Player player = target.getPlayer();
         if (plugin.getDataHandler().getLives(target.getUniqueId()) <= 0) {
             if(player != null){
-                //set time of tempban, if enabled
-                if(plugin.getConfigHandler().isTempBanEnabled()){
-                    plugin.getDataHandler().setTempBanTime(player.getUniqueId(), System.currentTimeMillis());
-                }
-
                 player.kickPlayer(Lang.KICK_OUT_OF_LIVES.getConfigValue());
             }
         }
