@@ -8,6 +8,7 @@ import me.bluemond.lifemc.listeners.EatFoodListener;
 import me.bluemond.lifemc.listeners.LoginListener;
 import me.bluemond.lifemc.listeners.PlayerKillsPlayerListener;
 import me.bluemond.lifemc.listeners.PlayerRespawnListener;
+import me.bluemond.lifemc.placeholderapi.LifemcExpansion;
 import me.bluemond.lifemc.vault.VaultHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -31,9 +32,7 @@ public class LifeMC extends JavaPlugin {
 
     public void onEnable() {
         messageBuffer = new HashMap<UUID, String>();
-
         configHandler = new ConfigHandler(this);
-        vaultHandler = new VaultHandler(this);
 
         // Load data handler
         dataHandler = new DataHandler(this);
@@ -43,10 +42,8 @@ public class LifeMC extends JavaPlugin {
         getCommand("lifemc").setTabCompleter(commandManager);
         getCommand("lifemc").setExecutor(commandManager);
 
+        loadApis();
         registerListeners();
-
-        // Load Vault
-        vaultHandler.loadVault();
 
         getLogger().info("LifeMC v" + getDescription().getVersion() + " has been enabled!");
 
@@ -58,6 +55,18 @@ public class LifeMC extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new LoginListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerKillsPlayerListener(this), this);
     }
+
+    private void loadApis(){
+        // Load Vault
+        vaultHandler = new VaultHandler(this);
+        vaultHandler.loadVault();
+
+        //load PlaceholderApi
+        if(getServer().getPluginManager().getPlugin("PlaceholderAPI") != null){
+            new LifemcExpansion(this).register();
+        }
+    }
+
 
     public ConfigHandler getConfigHandler() {
         return configHandler;

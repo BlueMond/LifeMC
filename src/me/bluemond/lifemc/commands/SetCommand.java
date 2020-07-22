@@ -2,6 +2,7 @@ package me.bluemond.lifemc.commands;
 
 import me.bluemond.lifemc.LifeMC;
 import me.bluemond.lifemc.lang.Lang;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
