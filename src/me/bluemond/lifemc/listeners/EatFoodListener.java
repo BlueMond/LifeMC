@@ -6,6 +6,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -23,16 +24,16 @@ public class EatFoodListener implements Listener {
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent event) {
 
+		// basic checks to make sure this is allowed on what is happening
+		if (!event.getAction().equals(Action.RIGHT_CLICK_AIR)) return;
 		if (!plugin.getConfigHandler().isEatingEnabled()) return;
-
 		if (!event.hasItem()) return;
 
 		Player player = event.getPlayer();
-		ItemStack item = player.getItemInHand();
+		ItemStack item = player.getInventory().getItemInMainHand();
 
-		// Players cannot eat food when they are sneaking.
-		if (player.isSneaking()) return;
-
+		// Players can only eat life items when they are sneaking and have permission
+		if (!player.isSneaking()) return;
 		if (!player.hasPermission("lifemc.lives.gain")) return;
 
 		List<Material> eatableItems = plugin.getConfigHandler().getEdibleItems();

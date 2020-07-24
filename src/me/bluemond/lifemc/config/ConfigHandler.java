@@ -94,6 +94,10 @@ public class ConfigHandler {
         return realMaterials;
     }
 
+    public List<String> getEdibleCustomItemsLore() {
+        return mainConfig.getStringList("Edible custom items' lore contains");
+    }
+
     public int getMaxLives() {
         return mainConfig.getInt("Max lives", 10);
     }

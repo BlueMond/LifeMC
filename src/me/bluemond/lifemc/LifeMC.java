@@ -26,10 +26,12 @@ public class LifeMC extends JavaPlugin {
 
     private final API api = new API(this);
 
+    @Override
     public void onDisable() {
         getLogger().info("LifeMC v" + getDescription().getVersion() + " has been disabled!");
     }
 
+    @Override
     public void onEnable() {
         messageBuffer = new HashMap<UUID, String>();
         configHandler = new ConfigHandler(this);

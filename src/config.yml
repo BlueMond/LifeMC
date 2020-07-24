@@ -15,11 +15,18 @@ Buying enabled: false
 # Allow players to eat items to gain a life
 Eating enabled: true
 
-# Items that can be 'eaten'. A player has to right click with the item in hand to eat it.
+# Items that can be 'eaten'. A player has to right click with the item in hand, while sneaking, to eat it.
 # A list of items can be found here: http://jd.bukkit.org/rb/apidocs/org/bukkit/Material.html
 Eatable items:
-- GOLDEN_APPLE
-- GOLDEN_CARROT
+  - GOLDEN_APPLE
+  - GOLDEN_CARROT
+
+# If any of these piece of text are found inside the lore of an item, that item can be eaten to gain a life.
+# (lore is usually used by plugin developers to designate custom items)
+# Case sensitive
+Edible custom items' lore contains:
+  - [LifeMC]
+  - life item
 
 # Cost to buy one life
 # This is in your own currency.
