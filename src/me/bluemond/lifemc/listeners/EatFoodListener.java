@@ -24,10 +24,8 @@ public class EatFoodListener implements Listener {
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent event) {
 
-		// basic checks to make sure this is allowed on what is happening
-		if (!event.getAction().equals(Action.RIGHT_CLICK_AIR)) return;
-		if (!plugin.getConfigHandler().isEatingEnabled()) return;
-		if (!event.hasItem()) return;
+		// basic checks to make sure this is the correct event
+		if(!isPermissibleEvent(event)) return;
 
 		Player player = event.getPlayer();
 		ItemStack item = player.getInventory().getItemInMainHand();
@@ -36,10 +34,9 @@ public class EatFoodListener implements Listener {
 		if (!player.isSneaking()) return;
 		if (!player.hasPermission("lifemc.lives.gain")) return;
 
-		List<Material> eatableItems = plugin.getConfigHandler().getEdibleItems();
+		// Can only eat config specified items for lives
+		if(!isEdibleLifeItem(item)) return;
 
-		// Not eatable
-		if (!eatableItems.contains(item.getType())) return;
 
 		int lives = plugin.getDataHandler().getLives(player.getUniqueId());
 
@@ -62,5 +59,36 @@ public class EatFoodListener implements Listener {
 		player.sendMessage(Lang.GAINED_A_LIFE.getConfigValue());
 
 		event.setCancelled(true);
+	}
+
+	private boolean isPermissibleEvent(PlayerInteractEvent event) {
+		if (!event.getAction().equals(Action.RIGHT_CLICK_AIR) &&
+				!event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) return false;
+		if (!plugin.getConfigHandler().isEatingEnabled()) return false;
+		if (!event.hasItem()) return false;
+
+		return true;
+	}
+
+	private boolean isEdibleLifeItem(ItemStack item) {
+		List<Material> eatableItems = plugin.getConfigHandler().getEdibleItems();
+		List<String> customEdibleLores = plugin.getConfigHandler().getEdibleCustomItemsLore();
+		List<String> itemLore = item.getItemMeta().getLore();
+
+		// Minecraft based item
+		if (eatableItems.contains(item.getType())) return true;
+
+		// Custom item (by lore)
+		boolean contains = false;
+		if (itemLore != null && customEdibleLores != null) {
+			//checks if any custom item lore segments are contained within the item's lore
+			for (String lineItemLore : itemLore) {
+				for(String customLoreSegment : customEdibleLores){
+					if(lineItemLore.contains(customLoreSegment)) contains = true;
+				}
+			}
+		}
+
+		return contains;
 	}
 }

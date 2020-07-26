@@ -21,7 +21,7 @@ Eatable items:
   - GOLDEN_APPLE
   - GOLDEN_CARROT
 
-# If any of these piece of text are found inside the lore of an item, that item can be eaten to gain a life.
+# If any of these pieces of text are found inside the lore of an item, that item can be eaten to gain a life. It does not have to be the entire lore.
 # (lore is usually used by plugin developers to designate custom items)
 # Case sensitive
 Edible custom items' lore contains:
