@@ -8,3 +8,5 @@ When a player is out of lives, he or she will be banned until that player regain
 
 Download on spigot at: https://www.spigotmc.org/resources/lifemc.81758/
 
+LEGACY release on dev.bukkit: https://dev.bukkit.org/projects/lifemc
+
