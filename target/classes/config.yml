@@ -1,0 +1,56 @@
+# Config file of LifeMC.
+# After you update to a new version, the config won't update automatically.
+# If you are missing an option, you can find it on the github page, or stop the server and delete the config for it to be regenerated on startup.
+# Github page: https://github.com/BlueMond/LifeMC
+
+# The max amount of lives a player can have.
+Max lives: 10
+
+# Starting lives of a new player
+Starting lives: 3
+
+# Allow players to buy lives
+Buying enabled: false
+
+# Allow players to eat items to gain a life
+Eating enabled: true
+
+# Items that can be 'eaten'. A player has to right click with the item in hand, while sneaking, to eat it.
+# A list of items can be found here: http://jd.bukkit.org/rb/apidocs/org/bukkit/Material.html
+Eatable items:
+  - GOLDEN_APPLE
+  - GOLDEN_CARROT
+
+# If any of these pieces of text are found inside the lore of an item, that item can be eaten to gain a life. It does not have to be the entire lore.
+# (lore is usually used by plugin developers to designate custom items)
+# Case sensitive
+Edible custom items' lore contains:
+  - [LifeMC]
+  - life item
+
+# Cost to buy one life
+# This is in your own currency.
+Life cost: 100
+
+# Death mode.  When players run out of lives, should we they be kicked, or be put into spectator mode?
+# Setting to "spectate" improves compatability with e.g. bungeecord, where a kick/ban will prevent the player from connecting and issuing a /server to change servers.
+# Valid options: "spectate" or "kick"
+Death mode: spectate
+
+# When you have 0 lives and get banned, will you spawn back at your bed when you join again?
+Spawn at bad after ban: false
+
+# Does a player gain a life when he kills another player?
+Gain life at murder: false
+
+# Can players revive other players by giving them lives?
+Revive enabled: true
+
+# Temporarily bans the player instead of them being permanently dead
+TempBan enabled: false
+
+# Amount of HOURS the player will be temporarily banned (accepts decimals)
+TempBan hours: 10.0
+
+# Lives reinstated to players who rejoin after the tempban
+TempBan lives: 2
