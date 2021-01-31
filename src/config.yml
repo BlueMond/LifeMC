@@ -32,6 +32,11 @@ Edible custom items' lore contains:
 # This is in your own currency.
 Life cost: 100
 
+# Death mode.  When players run out of lives, should we they be kicked, or be put into spectator mode?
+# Setting to "spectate" improves compatability with e.g. bungeecord, where a kick/ban will prevent the player from connecting and issuing a /server to change servers.
+# Valid options: "spectate" or "kick"
+Death mode: spectate
+
 # When you have 0 lives and get banned, will you spawn back at your bed when you join again?
 Spawn at bad after ban: false
 

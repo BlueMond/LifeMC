@@ -1,5 +1,5 @@
 name: LifeMC
-version: 2.31
+version: 2.4
 main: me.bluemond.lifemc.LifeMC
 softdepend: [Vault, PlaceholderAPI]
 authors: [Staartvin, Bluemond]
