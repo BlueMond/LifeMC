@@ -1,8 +1,8 @@
 name: LifeMC
 version: 2.4.1
-main: me.bluemond.lifemc.LifeMC
+main: pw.nebula.universe.LifeMC
 softdepend: [Vault, PlaceholderAPI]
-authors: [Staartvin, Bluemond]
+authors: [Staartvin, Bluemond, JohnDelisle]
 api-version: 1.15
 commands:
   lifemc:

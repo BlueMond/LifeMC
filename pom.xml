@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>me.bluemond.lifemc</groupId>
+    <groupId>pw.nebula.universe.lifemc</groupId>
     <artifactId>LifeMC</artifactId>
     <version>2.4.1</version>
     <name>LifeMC</name>
@@ -10,12 +10,10 @@
             <id>papermc</id>
             <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
-
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
-
     </repositories>
     <build>
         <plugins>
@@ -37,14 +35,18 @@
             <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>com.github.MilkBowl</groupId>
             <artifactId>vault</artifactId>
             <version>1.7.3</version>
             <scope>provided</scope>
         </dependency>
-
-
     </dependencies>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub OWNER Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/JohnDelisle/LifeMC</url>
+        </repository>
+    </distributionManagement>
 </project>
