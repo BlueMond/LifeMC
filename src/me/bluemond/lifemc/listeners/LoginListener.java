@@ -46,9 +46,19 @@ public class LoginListener implements Listener {
             if (lives < 1) {
                 //kick if not restored from tempban
                 if (!isUnBanInitiated(player)) {
-                    // Kick player.
-                    PlayerLoginEvent.Result result = PlayerLoginEvent.Result.KICK_BANNED;
-                    event.disallow(result, Lang.KICK_OUT_OF_LIVES.getConfigValue());
+
+
+                    if (plugin.getConfigHandler().getDeathMode().equals "kick") {
+                        // Kick player.
+                        PlayerLoginEvent.Result result = PlayerLoginEvent.Result.KICK_BANNED;
+                        event.disallow(result, Lang.KICK_OUT_OF_LIVES.getConfigValue());
+                    }
+
+                    if (plugin.getConfigHandler().getDeathMode().equals "spectate") {
+                        // Put player in spectator mode after .5 seconds
+                        plugin.getServer().getScheduler().runTaskLater(plugin,
+                            () -> player.setGameMode(GameMode.SPECTATOR), 10L);
+                    }
                 }
             }
         }
@@ -78,6 +88,12 @@ public class LoginListener implements Listener {
         plugin.messageBuffer.put(player.getUniqueId(), ChatColor.GOLD + "Your sentence to the afterlife for " + plugin.getConfigHandler().getTempBanHours()
                 + " hours has been completed, and you have been restore with "
                 + plugin.getConfigHandler().getTempBanLives() + " lives.");
-    }
 
+        // if mode is spectate, we need to put player back in survival
+        if (plugin.getConfigHandler().getDeathMode().equals "spectate") {
+            // Put player in survival mode after .5 seconds
+            plugin.getServer().getScheduler().runTaskLater(plugin,
+                () -> player.setGameMode(GameMode.SURVIVAL), 10L);
+        }
+    }
 }

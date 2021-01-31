@@ -7,6 +7,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.GameMode;
+
 
 //Listener class
 public class PlayerRespawnListener implements Listener {
@@ -47,9 +49,19 @@ public class PlayerRespawnListener implements Listener {
                 }
             }
 
-            // Kick player after .5 seconds
-            plugin.getServer().getScheduler().runTaskLater(plugin,
-                    () -> player.kickPlayer(Lang.KICK_OUT_OF_LIVES.getConfigValue()), 10L);
+            if (plugin.getConfigHandler().getDeathMode().equals "kick") {
+                // Kick player after .5 seconds
+                plugin.getServer().getScheduler().runTaskLater(plugin,
+                        () -> player.kickPlayer(Lang.KICK_OUT_OF_LIVES.getConfigValue()), 10L);
+            }
+
+            if (plugin.getConfigHandler().getDeathMode().equals "spectate") {
+                // Put player in spectator mode after .5 seconds
+                plugin.getServer().getScheduler().runTaskLater(plugin,
+                        () -> player.setGameMode(GameMode.SPECTATOR), 10L);
+            }
+
+
         } else {
 
             plugin.getDataHandler().decreaseLives(player.getUniqueId(), 1);

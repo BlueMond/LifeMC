@@ -102,6 +102,10 @@ public class ConfigHandler {
         return mainConfig.getInt("Max lives", 10);
     }
 
+    public String getDeathMode() {
+        return mainConfig.getString("Death mode", "spectate");
+    }
+
     public int getLifeCost() {
         return mainConfig.getInt("Life cost", 100);
     }
