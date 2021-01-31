@@ -51,6 +51,11 @@ public class GiveCommand extends PluginCommand {
             return true;
         }
 
+        if (targetLives < 1) {
+            commandSender.sendMessage(ChatColor.RED + "You cannot give less than 1 life.");
+            return true;
+        }
+
         Player giver = (Player) commandSender;
         //create variables of UPDATED life counts (not yet applied to dataHandler)
         int giverLifeCount = plugin.getDataHandler().getLives(giver.getUniqueId()) - targetLives;
