@@ -37,14 +37,18 @@
             <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>com.github.MilkBowl</groupId>
             <artifactId>vault</artifactId>
             <version>1.7.3</version>
             <scope>provided</scope>
         </dependency>
-
-
     </dependencies>
+    <distributionManagement>
+      <repository>
+        <id>github</id>
+        <name>GitHub OWNER Apache Maven Packages</name>
+        <url>https://maven.pkg.github.com/JohnDelisle/LifeMC</url>
+      </repository>
+    </distributionManagement>
 </project>
